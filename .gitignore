@@ -1,0 +1,5 @@
+dotMemoryUnit/dotMemoryUnit-agent/target/
+dotMemoryUnit/dotMemoryUnit-server/target/
+dotMemoryUnit/dotMemoryUnit-common/target/
+dotMemoryUnit/.idea/
+*.iml
