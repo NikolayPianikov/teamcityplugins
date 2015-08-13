@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="dotNet-testRunner">
+  <test name="dotNet-testRunner">
+    <classes>
+      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitSetupBuilderTest"/>
+      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitProjectGeneratorTest"/>
+      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitPublisherTest"/>
+      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitOutputParserTest"/>
+    </classes>
+  </test>
+</suite>
