@@ -2,10 +2,10 @@
 <suite name="dotNet-testRunner">
   <test name="dotNet-testRunner">
     <classes>
-      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitSetupBuilderTest"/>
-      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitProjectGeneratorTest"/>
-      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitPublisherTest"/>
-      <class name="jetbrains.buildServer.dotNet.dotMemoryUnit.agent.DotMemoryUnitOutputParserTest"/>
+      <class name="jetbrains.buildServer.dotMemoryUnit.agent.DotMemoryUnitSetupBuilderTest"/>
+      <class name="jetbrains.buildServer.dotMemoryUnit.agent.DotMemoryUnitProjectGeneratorTest"/>
+      <class name="jetbrains.buildServer.dotMemoryUnit.agent.DotMemoryUnitPublisherTest"/>
+      <class name="jetbrains.buildServer.dotMemoryUnit.agent.DotMemoryUnitOutputParserTest"/>
     </classes>
   </test>
 </suite>

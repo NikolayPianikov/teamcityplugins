@@ -8,11 +8,11 @@ public class DotMemoryUnitBean {
 
   @NotNull
   public String getUseDotMemoryUnitKey() {
-    return Constants.NUNIT_USE_DOT_MEMORY_UNIT;
+    return Constants.USE_VAR;
   }
 
   @NotNull
   public String getDotMemoryUnitPathKey() {
-    return Constants.NUNIT_DOT_MEMORY_UNIT_PATH;
+    return Constants.PATH_VAR;
   }
 }

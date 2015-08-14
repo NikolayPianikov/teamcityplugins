@@ -3,3 +3,11 @@ dotMemoryUnit/dotMemoryUnit-server/target/
 dotMemoryUnit/dotMemoryUnit-common/target/
 dotMemoryUnit/.idea/
 *.iml
+dotTrace/dotTrace-agent/target/
+dotTrace/dotTrace-server/target/
+dotTrace/build/target/
+dotTrace/.idea/
+dotMemoryUnit/build/target/
+dotMemoryUnit/target/
+dotTrace/dotTrace-common/target/
+dotTrace/target/
