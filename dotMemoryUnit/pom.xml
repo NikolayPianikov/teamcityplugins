@@ -34,7 +34,7 @@
 				<version>2.1</version>
 				<configuration>
                     <preparationGoals>clean install</preparationGoals>
-      				 <goals>deploy</goals>
+      				<goals>deploy</goals>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			  </plugin>
