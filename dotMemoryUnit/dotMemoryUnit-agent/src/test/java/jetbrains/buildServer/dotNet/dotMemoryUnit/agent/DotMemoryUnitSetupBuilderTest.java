@@ -2,6 +2,9 @@ package jetbrains.buildServer.dotNet.dotMemoryUnit.agent;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
+
+import jetbrains.buildServer.dotMemoryUnit.Constants;
 import jetbrains.buildServer.dotNet.buildRunner.agent.*;
 import org.jetbrains.annotations.NotNull;
 import org.jmock.Expectations;
@@ -40,7 +43,7 @@ public class DotMemoryUnitSetupBuilderTest {
   public void shouldCreateSetupWhenGetSetup()
   {
     // Given
-    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Arrays.asList(myCommandLineResource));
+    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Collections.singletonList(myCommandLineResource));
     final File projectFile = new File("aaa");
     final File outputFile = new File("output");
     final File workspaceDir = new File("workspaceDir");
@@ -49,10 +52,10 @@ public class DotMemoryUnitSetupBuilderTest {
       oneOf(myAssertions).contains(RunnerAssertions.Assertion.PROFILING_IS_NOT_ALLOWED);
       will(returnValue(false));
       
-      oneOf(myRunnerParametersService).tryGetRunnerParameter(DotMemoryUnitSetupBuilder.NUNIT_DOT_MEMORY_UNIT_PATH);
+      oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.NUNIT_DOT_MEMORY_UNIT_PATH);
       will(returnValue(dotMemoryUnitFile.getParent()));
 
-      oneOf(myRunnerParametersService).tryGetRunnerParameter(DotMemoryUnitSetupBuilder.NUNIT_USE_DOT_MEMORY_UNIT);
+      oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.NUNIT_USE_DOT_MEMORY_UNIT);
       will(returnValue("True"));
 
       oneOf(myFileService).getTempFileName(DotMemoryUnitSetupBuilder.DOT_MEMORY_UNIT_PROJECT_EXT);
@@ -100,12 +103,12 @@ public class DotMemoryUnitSetupBuilderTest {
   public void shouldReturnBaseSetupWhenRunnerParamUseDotMemoryUnitIsEmptyOrFalse(final String useDotMemoryUnit)
   {
     // Given
-    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Arrays.asList(myCommandLineResource));
+    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Collections.singletonList(myCommandLineResource));
     myCtx.checking(new Expectations() {{
       oneOf(myAssertions).contains(RunnerAssertions.Assertion.PROFILING_IS_NOT_ALLOWED);
       will(returnValue(false));
 
-      oneOf(myRunnerParametersService).tryGetRunnerParameter(DotMemoryUnitSetupBuilder.NUNIT_USE_DOT_MEMORY_UNIT);
+      oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.NUNIT_USE_DOT_MEMORY_UNIT);
       will(returnValue(useDotMemoryUnit));
     }});
 
@@ -123,7 +126,7 @@ public class DotMemoryUnitSetupBuilderTest {
   public void shouldReturnBaseSetupWhenProfilingIsNotAllowed()
   {
     // Given
-    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Arrays.asList(myCommandLineResource));
+    final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Collections.singletonList(myCommandLineResource));
     myCtx.checking(new Expectations() {{
       oneOf(myAssertions).contains(RunnerAssertions.Assertion.PROFILING_IS_NOT_ALLOWED);
       will(returnValue(true));
