@@ -51,8 +51,8 @@ public class DotTraceEditExtension extends RunTypeExtension implements PositionA
       public Collection<InvalidProperty> process(final Map<String, String> properties) {
         final ArrayList<InvalidProperty> result = new ArrayList<InvalidProperty>();
 
-        final boolean useDotMemoryUnit = StringUtil.isTrue(properties.get(DotTraceBean.Shared.getUseDotTraceKey()));
-        if(useDotMemoryUnit && StringUtil.isEmptyOrSpaces(properties.get(DotTraceBean.Shared.getDotTracePathKey()))) {
+        final boolean useDotTrace = StringUtil.isTrue(properties.get(DotTraceBean.Shared.getUseDotTraceKey()));
+        if(useDotTrace && StringUtil.isEmptyOrSpaces(properties.get(DotTraceBean.Shared.getDotTracePathKey()))) {
           result.add(new InvalidProperty(DotTraceBean.Shared.getUseDotTraceKey(), PATH_NOT_SPECIFIED_ERROR_MESSAGE));
         }
 

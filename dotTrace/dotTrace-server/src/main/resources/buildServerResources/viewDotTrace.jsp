@@ -4,9 +4,9 @@
 <jsp:useBean id="bean" class="jetbrains.buildServer.dotTrace.server.DotTraceBean"/>
 
 <div class="parameter">
-  Use dotMemoryUnit: <props:displayValue name="${bean.useDotTraceKey}" emptyValue="false"/>
+  Use dotTrace: <props:displayValue name="${bean.useDotTraceKey}" emptyValue="false"/>
 </div>
 
 <div class="parameter">
-  Path to dotMemoryUnit: <props:displayValue name="${bean.dotTracePathKey}" emptyValue="<empty>"/>
+  Path to dotTrace: <props:displayValue name="${bean.dotTracePathKey}" emptyValue="<empty>"/>
 </div>

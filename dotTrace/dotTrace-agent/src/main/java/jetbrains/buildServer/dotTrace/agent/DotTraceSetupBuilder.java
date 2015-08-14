@@ -27,14 +27,14 @@ public class DotTraceSetupBuilder implements CommandLineSetupBuilder {
       return Collections.singleton(baseSetup);
     }
 
-    String dotMemoryUnitTool = myParametersService.tryGetRunnerParameter(Constants.USE_VAR);
-    if (StringUtil.isEmptyOrSpaces(dotMemoryUnitTool) || !Boolean.parseBoolean(dotMemoryUnitTool)) {
+    String dotTraceTool = myParametersService.tryGetRunnerParameter(Constants.USE_VAR);
+    if (StringUtil.isEmptyOrSpaces(dotTraceTool) || !Boolean.parseBoolean(dotTraceTool)) {
       return Collections.singleton(baseSetup);
     }
 
-    String dotMemoryUnitPath = myParametersService.tryGetRunnerParameter(Constants.PATH_VAR);
-    if(dotMemoryUnitPath == null) {
-      dotMemoryUnitPath = "";
+    String dotTracePath = myParametersService.tryGetRunnerParameter(Constants.PATH_VAR);
+    if(dotTracePath == null) {
+      dotTracePath = "";
     }
 
     return Collections.singleton(baseSetup);

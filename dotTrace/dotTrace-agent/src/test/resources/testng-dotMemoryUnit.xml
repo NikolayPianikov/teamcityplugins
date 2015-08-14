@@ -3,9 +3,6 @@
   <test name="dotNet-testRunner">
     <classes>
       <class name="jetbrains.buildServer.dotTrace.agent.DotTraceSetupBuilderTest"/>
-      <class name="jetbrains.buildServer.dotTrace.agent.DotMemoryUnitProjectGeneratorTest"/>
-      <class name="jetbrains.buildServer.dotTrace.agent.DotMemoryUnitPublisherTest"/>
-      <class name="jetbrains.buildServer.dotTrace.agent.DotMemoryUnitOutputParserTest"/>
     </classes>
   </test>
 </suite>

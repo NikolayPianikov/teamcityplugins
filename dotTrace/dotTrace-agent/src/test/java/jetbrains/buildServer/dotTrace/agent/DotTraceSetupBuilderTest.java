@@ -74,7 +74,7 @@ public class DotTraceSetupBuilderTest {
   }
 
   @Test(dataProvider = "runnerParamUseDotTraceCases")
-  public void shouldReturnBaseSetupWhenRunnerParamUseDotTraceIsEmptyOrFalse(final String useDotMemoryUnit)
+  public void shouldReturnBaseSetupWhenRunnerParamUseDotTraceIsEmptyOrFalse(final String useDotTrace)
   {
     // Given
     final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Collections.singletonList(myCommandLineResource));
@@ -83,7 +83,7 @@ public class DotTraceSetupBuilderTest {
       will(returnValue(false));
 
       oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.USE_VAR);
-      will(returnValue(useDotMemoryUnit));
+      will(returnValue(useDotTrace));
     }});
 
     final DotTraceSetupBuilder instance = createInstance();

@@ -7,20 +7,20 @@
 <jsp:useBean id="bean" class="jetbrains.buildServer.dotTrace.server.DotTraceBean"/>
 
 <tr class="advancedSetting">
-  <th><label for="${bean.useDotTraceKey}">Use dotMemoryUnit:</label></th>
+  <th><label for="${bean.useDotTraceKey}">Use dotTrace:</label></th>
   <td><props:checkboxProperty name="${bean.useDotTraceKey}" />
-    <span class="smallNote">The tests will be started under the JetBrains dotMemoryUnit tool.</span>
+    <span class="smallNote">The tests will be started under the JetBrains dotTrace tool.</span>
     <span class="error" id="error_${bean.useDotTraceKey}"></span>
   </td>
 </tr>
 
 <tr class="advancedSetting">
-  <th><label for="${bean.dotTracePathKey}">Path to dotMemoryUnit: <l:star/></label></th>
+  <th><label for="${bean.dotTracePathKey}">Path to dotTrace: <l:star/></label></th>
   <td>
     <div class="completionIconWrapper">
       <props:textProperty name="${bean.dotTracePathKey}" className="longField"/>
     </div>
     <span class="error" id="error_${bean.dotTracePathKey}"></span>
-    <span class="smallNote">Specify path to dotMemoryUnit.exe</span>
+    <span class="smallNote">Specify path to dotTrace.exe</span>
   </td>
 </tr>
