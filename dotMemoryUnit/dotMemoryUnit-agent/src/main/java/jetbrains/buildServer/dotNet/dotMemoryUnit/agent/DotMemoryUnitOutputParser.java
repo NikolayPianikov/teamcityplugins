@@ -21,6 +21,7 @@ public class DotMemoryUnitOutputParser implements TextParser<DotMemoryUnitOutput
   private static final String WORKSPACE_SHOULD_NOT_BE_EMPTY_ERROR_MESSAGE = "Error during parsing Dot Memory Unit output xml document: the workspace should not be empty";
   private static final String ERROR_DURING_PARSING_ERROR_MESSAGE = "Error during parsing Dot Memory Unit output xml document";
   private static final DotMemoryUnitOutput ourEmptyOutput = new DotMemoryUnitOutput(Collections.unmodifiableList(Collections.<File>emptyList()));
+  private static final String WORKSPACE_XPATH = "//dotMemoryUnitOutput/Workspace";
   private final XmlDocumentManager myXmlDocumentManager;
 
   public DotMemoryUnitOutputParser(
@@ -36,7 +37,7 @@ public class DotMemoryUnitOutputParser implements TextParser<DotMemoryUnitOutput
     final Document doc = myXmlDocumentManager.convertStringToDocument(outputText);
     XPath xpath = XPathFactory.newInstance().newXPath();
     try {
-      final NodeList workspaceElements = (NodeList)xpath.evaluate("//dotMemoryUnitOutput/Workspace", doc, XPathConstants.NODESET);
+      final NodeList workspaceElements = (NodeList)xpath.evaluate(WORKSPACE_XPATH, doc, XPathConstants.NODESET);
       for (int workspaceIndex = 0; workspaceIndex < workspaceElements.getLength(); workspaceIndex++) {
         final Node workspaceElement = workspaceElements.item(workspaceIndex);
         final String workspaceFileName = workspaceElement.getTextContent();

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class DotMemoryUnitEditExtension extends RunTypeExtension implements PositionAware {
   private static final String PATH_NOT_SPECIFIED_ERROR_MESSAGE = "The path to Dot Memory Unit must be specified.";
-  private static final List<String> ourRunTypes = Arrays.asList("MSBuild", "NAnt", "NUnit", "jetbrains.mspec", "jetbrains.dotNetGenericRunner", "jetbrains.xunit", "VisualStudioTest");
+  private static final List<String> ourRunTypes = Arrays.asList("MSBuild", "NAnt", "NUnit", "jetbrains.mspec", "jetbrains.dotNetGenericRunner", "jetbrains.xunit", "VisualStudioTest", "MSTest", "VSTest");
   private final String myViewUrl;
   private final String myEditUrl;
 
@@ -87,10 +87,7 @@ public class DotMemoryUnitEditExtension extends RunTypeExtension implements Posi
     wcm.registerController(actualUrl, new BaseController() {
       @Override
       protected ModelAndView doHandle(@NotNull final HttpServletRequest request, @NotNull final HttpServletResponse response) throws Exception {
-        final ModelAndView mv = new ModelAndView(actualJsp);
-        //noinspection unchecked
-        mv.getModel().put("cbean", new DotMemoryUnitBean(){});
-        return mv;
+        return new ModelAndView(actualJsp);
       }
     });
     return actualUrl;
