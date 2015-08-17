@@ -24,6 +24,8 @@ public class DotMemoryUnitProjectGenerator implements ResourceGenerator<DotMemor
   private static final String OVERRIDE_WORKSPACE_DIR_ELEMENT = "OverrideWorkspaceDir";
   private static final String OUTPUT_FILE_PATH_ELEMENT = "OutputFilePath";
   private static final String INHERIT_CONSOLE_ARG_VAL = "True";
+  private static final String DMU_MODE_ELEMENT = "dmuMode";
+  private static final String DMU_MODE_TEAM_CITY = "TeamCity";
 
   private final XmlDocumentManager myDocumentManager;
   private final CommandLineArgumentsService myCommandLineArgumentsService;
@@ -55,6 +57,7 @@ public class DotMemoryUnitProjectGenerator implements ResourceGenerator<DotMemor
     coverageParamsElement.appendChild(createSimpleElement(doc, TEMP_DIR_ELEMENT, myFileService.getTempDirectory().getPath()));
     coverageParamsElement.appendChild(createSimpleElement(doc, OVERRIDE_WORKSPACE_DIR_ELEMENT, ctx.getWorkspaceDirectory().getPath()));
     coverageParamsElement.appendChild(createSimpleElement(doc, OUTPUT_FILE_PATH_ELEMENT, ctx.getOutputFile().getPath()));
+    coverageParamsElement.appendChild(createSimpleElement(doc, DMU_MODE_ELEMENT, DMU_MODE_TEAM_CITY));
     doc.appendChild(coverageParamsElement);
     return myDocumentManager.convertDocumentToString(doc, outDocumentProperties);
   }

@@ -46,6 +46,7 @@ public class DotMemoryUnitProjectGeneratorTest {
                              "<TempDir>temp</TempDir>" +
                              "<OverrideWorkspaceDir>WorkSpaceDir</OverrideWorkspaceDir>" +
                              "<OutputFilePath>output.dotMemoryUnit</OutputFilePath>" +
+                             "<dmuMode>TeamCity</dmuMode>" +
                              "</dotMemoryUnit>";
 
     final CommandLineSetup setup = new CommandLineSetup("wd" + File.separator + "tool", Arrays.asList(new CommandLineArgument("arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("arg2", CommandLineArgument.Type.PARAMETER)), Collections.<CommandLineResource>emptyList());
