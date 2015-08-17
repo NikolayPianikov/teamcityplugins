@@ -20,14 +20,22 @@ public class DotTraceSetupBuilderTest {
   private RunnerParametersService myRunnerParametersService;
   private CommandLineResource myCommandLineResource;
   private RunnerAssertions myAssertions;
+  private ResourceGenerator<DotTraceContext> myDotTraceProjectGenerator;
+  private ResourcePublisher myBeforeBuildPublisher;
+  private FileService myFileService;
 
   @BeforeMethod
   public void setUp()
   {
     myCtx = new Mockery();
+
+    //noinspection unchecked
+    myDotTraceProjectGenerator = (ResourceGenerator<DotTraceContext>)myCtx.mock(ResourceGenerator.class);
     //noinspection unchecked
     myRunnerParametersService = myCtx.mock(RunnerParametersService.class);
+    myBeforeBuildPublisher = myCtx.mock(ResourcePublisher.class);
     myCommandLineResource = myCtx.mock(CommandLineResource.class);
+    myFileService = myCtx.mock(FileService.class);
     myAssertions = myCtx.mock(RunnerAssertions.class);
   }
 
@@ -37,9 +45,7 @@ public class DotTraceSetupBuilderTest {
     // Given
     final CommandLineSetup baseSetup = new CommandLineSetup("someTool", Arrays.asList(new CommandLineArgument("/arg1", CommandLineArgument.Type.PARAMETER), new CommandLineArgument("/arg2", CommandLineArgument.Type.PARAMETER)), Collections.singletonList(myCommandLineResource));
     final File projectFile = new File("aaa");
-    final File outputFile = new File("output");
-    final File workspaceDir = new File("workspaceDir");
-    final File dotTraceFile = new File("c:\\abc", "aaa");
+    final File dotTraceFile = new File("abc", DotTraceSetupBuilder.DOT_TRACE_EXE_NAME);
     myCtx.checking(new Expectations() {{
       oneOf(myAssertions).contains(RunnerAssertions.Assertion.PROFILING_IS_NOT_ALLOWED);
       will(returnValue(false));
@@ -49,6 +55,17 @@ public class DotTraceSetupBuilderTest {
 
       oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.USE_VAR);
       will(returnValue("True"));
+
+      oneOf(myRunnerParametersService).tryGetRunnerParameter(Constants.THRESHOLDS_VAR);
+      will(returnValue(""));
+
+      oneOf(myFileService).validatePath(new File("abc", DotTraceSetupBuilder.DOT_TRACE_EXE_NAME));
+
+      oneOf(myFileService).getTempFileName(DotTraceSetupBuilder.DOT_TRACE_PROJECT_EXT);
+      will(returnValue(projectFile));
+
+      oneOf(myDotTraceProjectGenerator).create(new DotTraceContext(baseSetup));
+      will(returnValue("project's content"));
     }});
 
     final DotTraceSetupBuilder instance = createInstance();
@@ -58,8 +75,9 @@ public class DotTraceSetupBuilderTest {
 
     // Then
     myCtx.assertIsSatisfied();
-    // then(setup.getToolPath()).isEqualTo(dotTraceFile.getPath());
-    // then(setup.getArgs()).containsExactly(new CommandLineArgument(projectFile.getPath(), CommandLineArgument.Type.PARAMETER));
+    then(setup.getToolPath()).isEqualTo(dotTraceFile.getPath());
+    then(setup.getArgs()).containsExactly(new CommandLineArgument(projectFile.getPath(), CommandLineArgument.Type.PARAMETER));
+    then(setup.getResources()).containsExactly(myCommandLineResource, new CommandLineFile(myBeforeBuildPublisher, projectFile, "project's content"));
   }
 
   @DataProvider(name = "runnerParamUseDotTraceCases")
@@ -120,7 +138,10 @@ public class DotTraceSetupBuilderTest {
   private DotTraceSetupBuilder createInstance()
   {
     return new DotTraceSetupBuilder(
+      myDotTraceProjectGenerator,
+      myBeforeBuildPublisher,
       myRunnerParametersService,
+      myFileService,
       myAssertions);
   }
 }

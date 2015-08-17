@@ -15,4 +15,9 @@ public class DotTraceBean {
   public String getDotTracePathKey() {
     return Constants.PATH_VAR;
   }
+
+  @NotNull
+  public String getDotTraceThresholdsKey() {
+    return Constants.THRESHOLDS_VAR;
+  }
 }

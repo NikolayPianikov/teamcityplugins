@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 public class DotMemoryUnitProjectGenerator implements ResourceGenerator<DotMemoryUnitContext> {
   private static final Map<String, String> outDocumentProperties;
   private static final String NO_VAL = "no";
-  private static final String DOT_MEMORY_UNIT_ELEMENT = "dotMemoryUnit";
+  private static final String ROOT_ELEMENT = "dotMemoryUnit";
   private static final String TARGET_EXECUTABLE_ELEMENT = "TargetExecutable";
   private static final String TARGET_ARGUMENTS_ELEMENT = "TargetArguments";
   private static final String TARGET_WORKING_DIR_ELEMENT = "TargetWorkingDir";
@@ -48,17 +48,17 @@ public class DotMemoryUnitProjectGenerator implements ResourceGenerator<DotMemor
   @NotNull
   public String create(@NotNull final DotMemoryUnitContext ctx) {
     final Document doc = myDocumentManager.createDocument();
-    Element coverageParamsElement = doc.createElement(DOT_MEMORY_UNIT_ELEMENT);
-    coverageParamsElement.appendChild(createSimpleElement(doc, TARGET_EXECUTABLE_ELEMENT, ctx.getBaseSetup().getToolPath()));
-    coverageParamsElement.appendChild(createSimpleElement(doc, TARGET_ARGUMENTS_ELEMENT, myCommandLineArgumentsService.createCommandLineString(ctx.getBaseSetup().getArgs())));
-    coverageParamsElement.appendChild(createSimpleElement(doc, TARGET_WORKING_DIR_ELEMENT, myFileService.getCheckoutDirectory().getPath()));
-    coverageParamsElement.appendChild(createSimpleElement(doc, INHERIT_CONSOLE_ELEMENT, INHERIT_CONSOLE_ARG_VAL));
-    coverageParamsElement.appendChild(createSimpleElement(doc, RETURN_TARGET_EXIT_CODE_ELEMENT, ""));
-    coverageParamsElement.appendChild(createSimpleElement(doc, TEMP_DIR_ELEMENT, myFileService.getTempDirectory().getPath()));
-    coverageParamsElement.appendChild(createSimpleElement(doc, OVERRIDE_WORKSPACE_DIR_ELEMENT, ctx.getWorkspaceDirectory().getPath()));
-    coverageParamsElement.appendChild(createSimpleElement(doc, OUTPUT_FILE_PATH_ELEMENT, ctx.getOutputFile().getPath()));
-    coverageParamsElement.appendChild(createSimpleElement(doc, DMU_MODE_ELEMENT, DMU_MODE_TEAM_CITY));
-    doc.appendChild(coverageParamsElement);
+    Element rootElement = doc.createElement(ROOT_ELEMENT);
+    rootElement.appendChild(createSimpleElement(doc, TARGET_EXECUTABLE_ELEMENT, ctx.getBaseSetup().getToolPath()));
+    rootElement.appendChild(createSimpleElement(doc, TARGET_ARGUMENTS_ELEMENT, myCommandLineArgumentsService.createCommandLineString(ctx.getBaseSetup().getArgs())));
+    rootElement.appendChild(createSimpleElement(doc, TARGET_WORKING_DIR_ELEMENT, myFileService.getCheckoutDirectory().getPath()));
+    rootElement.appendChild(createSimpleElement(doc, INHERIT_CONSOLE_ELEMENT, INHERIT_CONSOLE_ARG_VAL));
+    rootElement.appendChild(createSimpleElement(doc, RETURN_TARGET_EXIT_CODE_ELEMENT, ""));
+    rootElement.appendChild(createSimpleElement(doc, TEMP_DIR_ELEMENT, myFileService.getTempDirectory().getPath()));
+    rootElement.appendChild(createSimpleElement(doc, OVERRIDE_WORKSPACE_DIR_ELEMENT, ctx.getWorkspaceDirectory().getPath()));
+    rootElement.appendChild(createSimpleElement(doc, OUTPUT_FILE_PATH_ELEMENT, ctx.getOutputFile().getPath()));
+    rootElement.appendChild(createSimpleElement(doc, DMU_MODE_ELEMENT, DMU_MODE_TEAM_CITY));
+    doc.appendChild(rootElement);
     return myDocumentManager.convertDocumentToString(doc, outDocumentProperties);
   }
 
