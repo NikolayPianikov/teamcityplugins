@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.web.servlet.ModelAndView;
 
 public class DotMemoryUnitEditExtension extends RunTypeExtension implements PositionAware {
-  private static final String PATH_NOT_SPECIFIED_ERROR_MESSAGE = "The path to dotMemoryUnit must be specified.";
+  private static final String PATH_NOT_SPECIFIED_ERROR_MESSAGE = "The path to dotMemory Unit must be specified.";
   private static final List<String> ourRunTypes = Arrays.asList("MSBuild", "NAnt", "NUnit", "jetbrains.mspec", "jetbrains.dotNetGenericRunner", "jetbrains.xunit", "VisualStudioTest", "MSTest", "VSTest");
   private final String myViewUrl;
   private final String myEditUrl;

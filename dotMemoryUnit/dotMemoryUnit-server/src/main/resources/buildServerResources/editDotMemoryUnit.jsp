@@ -7,15 +7,15 @@
 <jsp:useBean id="bean" class="jetbrains.buildServer.dotMemoryUnit.server.DotMemoryUnitBean"/>
 
 <tr class="advancedSetting">
-  <th><label for="${bean.useDotMemoryUnitKey}">Use dotMemoryUnit:</label></th>
+  <th><label for="${bean.useDotMemoryUnitKey}">Use dotMemory Unit:</label></th>
   <td><props:checkboxProperty name="${bean.useDotMemoryUnitKey}" />
-    <span class="smallNote">The tests will be started under the JetBrains dotMemoryUnit tool.</span>
+    <span class="smallNote">The tests will be started under the JetBrains dotMemory Unit tool.</span>
     <span class="error" id="error_${bean.useDotMemoryUnitKey}"></span>
   </td>
 </tr>
 
 <tr class="advancedSetting">
-  <th><label for="${bean.dotMemoryUnitPathKey}">Path to dotMemoryUnit: <l:star/></label></th>
+  <th><label for="${bean.dotMemoryUnitPathKey}">Path to dotMemory Unit: <l:star/></label></th>
   <td>
     <div class="completionIconWrapper">
       <props:textProperty name="${bean.dotMemoryUnitPathKey}" className="longField"/>
